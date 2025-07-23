@@ -16,7 +16,7 @@ function UserInfo() {
         <h5 className="card-title">{user.name}</h5>
         <p className="card-text">{user.about}</p>
         <a href={user.profileUrl} className="btn btn-primary">
-          Go somewhere
+          View My Profile
         </a>
       </div>
     </div>
