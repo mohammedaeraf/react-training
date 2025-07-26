@@ -1,11 +1,11 @@
 import "./App.css";
-import UserInfo from "./UserInfo";
+import CoursesArray from "./Components/CoursesArray";
 
 function App() {
   return (
     <div id="aeraf-div">
       <h1>My First React Application</h1>
-      <UserInfo></UserInfo>
+      <CoursesArray></CoursesArray>
     </div>
   );
 }
