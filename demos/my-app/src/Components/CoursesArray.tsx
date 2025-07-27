@@ -6,16 +6,15 @@ function Courses() {
     "Python",
     "Full Stack - MERN",
     "Express JS / Mongo DB",
+    "Zoho Books",
   ];
   return (
     <div>
       <h2 className="text-warning">List of Courses</h2>
       <ul className="list-group">
-        {
-          courses.map( (course) => (
+        {courses.map((course) => (
           <li className="list-group-item">{course}</li>
-          ))
-        }
+        ))}
       </ul>
     </div>
   );

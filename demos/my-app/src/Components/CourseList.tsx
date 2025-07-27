@@ -1,6 +1,6 @@
 function CourseList() {
-    // expected to return markup (HTML/CSS Code)
-    const courses = [
+  // expected to return markup (HTML/CSS Code)
+  const courses = [
     {
       id: "GD",
       title: "Graphic Design with Canva",
@@ -29,8 +29,9 @@ function CourseList() {
       <h2 className="text-primary">Course List</h2>
       <ul className="list-group">
         {courses.map((course) => (
-          <li className="list-group-item" key={course.id}>
-            {course.title} - {course.duration}
+          <li className="list-group-item">
+            <span className="text-primary">{course.title}</span> -{" "}
+            <span className="text-secondary">{course.duration}</span>
             <br />
             <span className="small text-danger">{course.description}</span>
           </li>
