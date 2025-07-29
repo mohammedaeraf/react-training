@@ -101,8 +101,8 @@ function ProfileCard({ name, role, skills }: ProfileCardProps) {
 ### In `App.tsx`:
 
 ```tsx
-<ProfileCard name="John Doe" role="Frontend Developer" />
-<ProfileCard name="Jane Smith" role="UI/UX Designer" />
+<ProfileCard name="John Doe" role="Frontend Developer" skills={["React", "TypeScript", "Bootstrap"]} />
+<ProfileCard name="Jane Smith" role="UI/UX Designer" skills={["HTML", "CSS", "Figma"]} />
 ```
 
 ---
