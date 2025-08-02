@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 
 const users = [
-  { id: "1", name: "Alice" },
-  { id: "2", name: "Bob" },
-  { id: "3", name: "Charlie" }
+  {
+    id: "1",
+    name: "Abbas",
+  },
+  {
+    id: "2",
+    name: "Javed",
+  },
+  {
+    id: "3",
+    name: "Irshad",
+  },
 ];
 
 function UserList() {
@@ -11,7 +20,7 @@ function UserList() {
     <div>
       <h2>User List</h2>
       <ul>
-        {users.map(user => (
+        {users.map((user) => (
           <li key={user.id}>
             <Link to={`/users/${user.id}`}>{user.name}</Link>
           </li>
@@ -20,5 +29,4 @@ function UserList() {
     </div>
   );
 }
-
 export default UserList;
