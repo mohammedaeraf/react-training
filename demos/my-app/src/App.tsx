@@ -6,6 +6,7 @@ import Contact from "./Components/Contact";
 import ProfileCard from "./Components/ProfileCard";
 import UserList from "./Components/UserList";
 import UserDetails from "./Components/UserDetails";
+import CourseList2 from "./Components/CourseList2";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         </Link>
         <Link to="/contact" className="btn btn-outline-light m-1">
           Contact
+        </Link>
+        <Link to="/courses" className="btn btn-outline-light m-1">
+          Courses
         </Link>
         <Link to="/users" className="btn btn-outline-light m-1">
           Users
@@ -34,6 +38,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/courses" element={<CourseList2 />} />
+
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetails />} />
 
