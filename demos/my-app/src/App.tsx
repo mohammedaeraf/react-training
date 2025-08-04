@@ -7,39 +7,21 @@ import ProfileCard from "./Components/ProfileCard";
 import UserList from "./Components/UserList";
 import UserDetails from "./Components/UserDetails";
 import CourseList2 from "./Components/CourseList2";
+import Header from "./Components/Header";
+import NavBar from "./Components/NavBar";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-expand bg-dark p-3">
-        <Link to="/" className="btn btn-outline-light m-1">
-          Home
-        </Link>
-        <Link to="/about" className="btn btn-outline-light m-1">
-          About
-        </Link>
-        <Link to="/contact" className="btn btn-outline-light m-1">
-          Contact
-        </Link>
-        <Link to="/courses" className="btn btn-outline-light m-1">
-          Courses
-        </Link>
-        <Link to="/users" className="btn btn-outline-light m-1">
-          Users
-        </Link>
-
-        <Link to="/profile" className="btn btn-outline-light m-1">
-          View My Profile
-        </Link>
-      </nav>
-
-      <div className="container mt-4">
+      <Header />
+      <NavBar />
+      <main className="container mt-4 minHt">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/courses" element={<CourseList2 />} />
-
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetails />} />
 
@@ -54,7 +36,9 @@ function App() {
             }
           />
         </Routes>
-      </div>
+      </main>
+
+      <Footer />
     </BrowserRouter>
   );
 }

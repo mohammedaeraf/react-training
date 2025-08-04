@@ -6,6 +6,34 @@ function About() {
         This is a simple home page built using HTML, CSS, and Bootstrap 5. It's
         clean, responsive, and easy to expand!
       </p>
+      <p>
+        This is a simple home page built using HTML, CSS, and Bootstrap 5. It's
+        clean, responsive, and easy to expand!
+      </p>
+      <p>
+        This is a simple home page built using HTML, CSS, and Bootstrap 5. It's
+        clean, responsive, and easy to expand!
+      </p>
+      <p>
+        This is a simple home page built using HTML, CSS, and Bootstrap 5. It's
+        clean, responsive, and easy to expand!
+      </p>
+      <p>
+        This is a simple home page built using HTML, CSS, and Bootstrap 5. It's
+        clean, responsive, and easy to expand!
+      </p>
+      <p>
+        This is a simple home page built using HTML, CSS, and Bootstrap 5. It's
+        clean, responsive, and easy to expand!
+      </p>
+      <p>
+        This is a simple home page built using HTML, CSS, and Bootstrap 5. It's
+        clean, responsive, and easy to expand!
+      </p>
+      <p>
+        This is a simple home page built using HTML, CSS, and Bootstrap 5. It's
+        clean, responsive, and easy to expand!
+      </p>
     </div>
   );
 }
