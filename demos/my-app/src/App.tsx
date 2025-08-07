@@ -10,7 +10,8 @@ import CourseList2 from "./Components/CourseList2";
 import Header from "./Components/Header";
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
-import PostList from "./Components/PostList";
+import PostList2 from "./Components/PostList2";
+import Counter2 from "./Components/Counter2";
 
 function App() {
   return (
@@ -23,9 +24,10 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/courses" element={<CourseList2 />} />
-          <Route path="/posts" element={<PostList />} />
+          <Route path="/posts" element={<PostList2 />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetails />} />
+          <Route path="/counter" element={<Counter2 />} />
 
           <Route
             path="/profile"
