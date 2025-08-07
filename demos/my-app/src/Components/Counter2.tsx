@@ -41,3 +41,5 @@ function Counter2() {
       </h4>
     </div>
   );
+}
+export default Counter2;
