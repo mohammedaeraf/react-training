@@ -9,7 +9,7 @@ interface Post {
   // imageUrl : string; // Not used, but could be added for real images
 }
 
-const RECORDS_PER_PAGE: number = 4;
+const RECORDS_PER_PAGE: number = 8;
 
 const PostList4 = () => {
   // State to hold the list of posts
@@ -120,10 +120,12 @@ const PostList4 = () => {
       <nav className="mt-4">
         <ul className="pagination justify-content-center">
           {pageNumbers.map((pageNumber) => (
-            <li className={
+            <li
+              className={
                 // if page number is the currently selected page add extra class 'active' to highlight
                 currentPage == pageNumber ? "page-item active" : "page-item"
-            }>
+              }
+            >
               <button
                 className="page-link"
                 onClick={() => {
