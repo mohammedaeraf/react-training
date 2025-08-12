@@ -65,6 +65,16 @@ function NavBar() {
               Counter
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink
+              to="/recipes"
+              className={(navData) =>
+                "nav-link" + (navData.isActive ? " active text-warning" : "")
+              }
+            >
+              Recipes
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>

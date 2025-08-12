@@ -12,6 +12,7 @@ import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
 import Counter2 from "./Components/Counter2";
 import PostList4 from "./Components/PostList4";
+import RecipeSearch from "./Components/RecipeSearch";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/counter" element={<Counter2 />} />
+          <Route path="/recipes" element={<RecipeSearch />} />
 
           <Route
             path="/profile"
