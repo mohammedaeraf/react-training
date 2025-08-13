@@ -37,16 +37,6 @@ function NavBar() {
           </li>
           <li className="nav-item">
             <NavLink
-              to="/courses"
-              className={(navData) =>
-                "nav-link" + (navData.isActive ? " active text-warning" : "")
-              }
-            >
-              Courses
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
               to="/posts"
               className={(navData) =>
                 "nav-link" + (navData.isActive ? " active text-warning" : "")
@@ -73,6 +63,16 @@ function NavBar() {
               }
             >
               Recipes
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              to="/courses"
+              className={(navData) =>
+                "nav-link" + (navData.isActive ? " active text-warning" : "")
+              }
+            >
+              Courses
             </NavLink>
           </li>
         </ul>
