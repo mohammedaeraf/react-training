@@ -14,6 +14,7 @@ import Counter2 from "./Components/Counter2";
 import PostList4 from "./Components/PostList4";
 import RecipeSearch from "./Components/RecipeSearch";
 import CourseList3 from "./Components/CourseList3";
+import CourseAdd from "./Components/CourseAdd";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/counter" element={<Counter2 />} />
           <Route path="/recipes" element={<RecipeSearch />} />
           <Route path="/courses" element={<CourseList3 />} />
+          <Route path="/add-course" element={<CourseAdd />} />
 
           <Route
             path="/profile"
