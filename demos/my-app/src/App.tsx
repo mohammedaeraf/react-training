@@ -33,6 +33,7 @@ function App() {
           <Route path="/recipes" element={<RecipeSearch />} />
           <Route path="/courses" element={<CourseList3 />} />
           <Route path="/add-course" element={<CourseAdd />} />
+          <Route path="/edit-course/:id" element={<CourseAdd />} />
 
           <Route
             path="/profile"

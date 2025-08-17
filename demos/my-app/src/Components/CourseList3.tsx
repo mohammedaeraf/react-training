@@ -24,8 +24,8 @@ const CourseList3 = () => {
 
   const deleteCourse = async (id: number) => {
     const deleteUrl = `${API_URL}/${id}`;
-    await fetch(deleteUrl, { method: "DELETE" });
-    fetchCourses();
+    await fetch(deleteUrl, { method: "DELETE",});
+    fetchCourses(); // referesh the list
   };
 
   return (
