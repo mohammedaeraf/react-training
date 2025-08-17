@@ -6,7 +6,6 @@ import Contact from "./Components/Contact";
 import ProfileCard from "./Components/ProfileCard";
 import UserList from "./Components/UserList";
 import UserDetails from "./Components/UserDetails";
-import CourseList2 from "./Components/CourseList2";
 import Header from "./Components/Header";
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
@@ -15,6 +14,7 @@ import PostList4 from "./Components/PostList4";
 import RecipeSearch from "./Components/RecipeSearch";
 import CourseList3 from "./Components/CourseList3";
 import CourseAdd from "./Components/CourseAdd";
+import CourseEdit from "./Components/CourseEdit";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
           <Route path="/recipes" element={<RecipeSearch />} />
           <Route path="/courses" element={<CourseList3 />} />
           <Route path="/add-course" element={<CourseAdd />} />
-          <Route path="/edit-course/:id" element={<CourseAdd />} />
+          <Route path="/edit-course/:id" element={<CourseEdit />} />
 
           <Route
             path="/profile"

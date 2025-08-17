@@ -49,10 +49,11 @@ const CourseEdit: React.FC = () => {
 
       // If update fails, throw error
       if (!response.ok) throw new Error("Update failed");
+      console.log("after update", course);
 
       // Show success message and redirect after short delay
       setMessage("✅ Course updated successfully!");
-      setTimeout(() => navigate("/courses"), 1500);
+      navigate("/courses");
     } catch {
       // Show error message if update fails
       setError("❌ Failed to update course.");
@@ -71,7 +72,7 @@ const CourseEdit: React.FC = () => {
       {/* Show success message if present */}
       {message && <p className="text-success">{message}</p>}
       {/* Edit form */}
-      <form className="border p-4 shadow-sm">
+      <div className="border p-4 shadow-sm">
         <div className="mb-3">
           {/* Title input */}
           <label className="form-label">Title</label>
@@ -101,7 +102,7 @@ const CourseEdit: React.FC = () => {
         <Link to="/" className="btn btn-secondary ms-2">
           Cancel
         </Link>
-      </form>
+      </div>
     </div>
   );
 };
