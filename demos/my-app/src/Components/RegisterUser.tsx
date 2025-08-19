@@ -1,34 +1,64 @@
 import { useState } from "react";
 
 const RegisterUser = () => {
-  const [fullName, setFullName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [email, setEmail] = useState("");
-  //   const [error, setError] = useState<string | null>(null);
-  //   const [success, setSuccess] = useState<string | null>(null);
+  const [fullName, setFullName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
 
-  //   const validateEmail = (email: string) =>
-  //     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  // +91-808809807
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const validateEmail = (email: string) =>
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
   const handleSubmit = () => {
-    // setError(null);
-    // setSuccess(null);
-    // const name: string = " Aeraf    ";
-    // console.log(name.trim());
-    // if (fullName.trim().length == 0) {
-    //   setError("Full name is required.");
+    console.log("Handle Submit Called..");
+    setError(null);
+    setSuccess(null);
+
+    if (fullName.trim().length == 0) {
+      setError("Full name cannot be left blank");
+      return;
+    }
+
+    if (email.trim().length == 0) {
+      setError("Email cannot be left blank");
+      return;
+    }
+
+    let validEmail: boolean = validateEmail(email);
+
+    if (!validEmail) {
+      setError("Email is not in correct format");
+      return;
+    }
+
+    if (password.trim().length < 6) {
+      setError("Password cannot be less than 6 chars");
+      return;
+    }
+
+    // if (confirmPassword.trim().length < 6) {
+    //   setError("Confirm Password cannot be less than 6 chars");
     //   return;
     // }
-    // if (email.trim().length == 0) {
-    //   setError("Email is required.");
-    //   return;
-    // }
-    // if (!validateEmail(email)) {
-    //   setError("Invalid email format.");
-    //   return;
-    // }
+
+    if (confirmPassword != password) {
+      setError("Password and Confirm Password do not match");
+      return;
+    }
+
+    setSuccess("You have registered successfully!");
+
+    setFullName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+
+
+    // TODO: Write code to post data to API
+
     // if (!password) {
     //   setError("Password is required.");
     //   return;
@@ -43,17 +73,17 @@ const RegisterUser = () => {
     // }
     // // TODO - add code to call POST API
     // setSuccess("Registration successful!");
-    // setFullName("");
-    // setEmail("");
-    // setPassword("");
-    // setConfirmPassword("");
+    
   };
 
   return (
     <div className="container mt-4" style={{ maxWidth: 600 }}>
       <h2 className="mb-4">Register User</h2>
-      {/* {error && <div className="alert alert-danger">{error}</div>}
-      {success && <div className="alert alert-success">{success}</div>} */}
+
+      {error && <div className="alert alert-danger">{error}</div>}
+
+      {success && <div className="alert alert-success">{success}</div>}
+
       <div className="border p-4 rounded shadow">
         <div className="mb-3">
           <label className="form-label">Full Name</label>
@@ -94,7 +124,9 @@ const RegisterUser = () => {
             placeholder="Confirm password"
           />
         </div>
-        <button className="btn btn-primary w-100">Register</button>
+        <button className="btn btn-primary w-100" onClick={handleSubmit}>
+          Register
+        </button>
       </div>
     </div>
   );

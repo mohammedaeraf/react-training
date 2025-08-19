@@ -47,12 +47,12 @@ function NavBar() {
           </li>
           <li className="nav-item">
             <NavLink
-              to="/counter"
+              to="/register"
               className={(navData) =>
                 "nav-link" + (navData.isActive ? " active text-warning" : "")
               }
             >
-              Counter
+              Register
             </NavLink>
           </li>
           <li className="nav-item">

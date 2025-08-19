@@ -15,6 +15,7 @@ import RecipeSearch from "./Components/RecipeSearch";
 import CourseList3 from "./Components/CourseList3";
 import CourseAdd from "./Components/CourseAdd";
 import CourseEdit from "./Components/CourseEdit";
+import RegisterUser from "./Components/RegisterUser";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route path="/posts" element={<PostList4 />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetails />} />
-          <Route path="/counter" element={<Counter2 />} />
+          <Route path="/register" element={<RegisterUser />} />
           <Route path="/recipes" element={<RecipeSearch />} />
           <Route path="/courses" element={<CourseList3 />} />
           <Route path="/add-course" element={<CourseAdd />} />
