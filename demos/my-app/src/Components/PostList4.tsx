@@ -94,21 +94,15 @@ const PostList4 = () => {
           <div className="col-md-3 mb-3" key={post.id}>
             {/* Card with flex column to align button at the bottom */}
             <div className="card h-100 d-flex flex-column">
-              {/* Placeholder image using post id */}
               <img src={`https://picsum.photos/id/${post.id}/300`} alt="" />
               <div className="card-body d-flex flex-column">
-                {/* Post title */}
                 <h4 className="card-title text-danger">{post.title}</h4>
-                {/* Post body */}
                 <p className="card-text text-secondary">{post.body}</p>
-                {/* Spacer to push button to the bottom */}
                 <div className="flex-grow-1">&nbsp;</div>
-                {/* Link button aligned at the bottom of the card */}
                 <a href="" className="btn btn-primary">
                   View Entire Post
                 </a>
               </div>
-              {/* Card footer with author info */}
               <div className="card-footer text-muted">
                 Author - {post.userId}
               </div>
