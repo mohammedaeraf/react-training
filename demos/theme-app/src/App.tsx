@@ -4,6 +4,7 @@ import type { Theme } from "./Context/ThemeContext";
 import ThemeToggler from "./Components/ThemeToggler";
 import ThemedCard from "./Components/ThemedCard";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ThemedTable from "./Components/ThemedTable";
 
 function App() {
   const [theme, setTheme] = useState<Theme>("light");
@@ -14,13 +15,12 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div
-        className="min-vh-100 p-5"
-      >
+      <div className="min-vh-100 p-5">
         <div className="container">
           <h1 className="mb-4">React Theme Toggle using Bootstrap</h1>
           <ThemeToggler />
           <ThemedCard />
+          <ThemedTable />
         </div>
       </div>
     </ThemeContext.Provider>
