@@ -18,19 +18,25 @@ import CourseEdit from "./Components/CourseEdit";
 import RegisterUser from "./Components/RegisterUser";
 import Box from "./Components/Box";
 import Greeting from "./Components/Greeting";
+import CourseList from "./Components/CourseList";
 
 function App() {
   return (
     <div>
+      {/* <CourseList /> */}
       <Greeting name="Aslam" />
 
-      <Box>Hello World</Box>
-      <Box>
+      <Box type="briefcase">Hello World</Box>
+      <Box type="suitcase">
         <p>This is inside a box.</p>
         <button>Click Me</button>
       </Box>
 
-      <Box>
+      <Box type="backpack">
+        <h2>A Box with just a heading</h2>
+      </Box>
+
+      <Box type="luggage-bag">
         <div className="container">
           <button type="button" className="btn btn-primary">
             Primary
