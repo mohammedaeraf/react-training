@@ -61,10 +61,15 @@ const Cart = () => {
       </table>
 
       <div className="d-flex justify-content-between align-items-center mt-3">
-        <h5>Total: ${total}</h5>
-        <Link to="/address" className="btn btn-primary">
-          Proceed to Address
-        </Link>
+        <h5>Total: ${total.toFixed(2)}</h5>
+        <div>
+          <Link to="/" className="btn btn-warning me-4">
+            Continue Shopping
+          </Link>
+          <Link to="/address" className="btn btn-primary">
+            Proceed to Address
+          </Link>
+        </div>
       </div>
     </div>
   );
