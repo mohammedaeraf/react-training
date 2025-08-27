@@ -27,7 +27,7 @@ const Cart = () => {
           >
             {/* Show item name and quantity */}
             <span>
-              {item.name} x {item.quantity}
+              {item.title} x {item.quantity}
             </span>
             {/* Show total price for this item */}
             <span>${item.price * item.quantity}</span>

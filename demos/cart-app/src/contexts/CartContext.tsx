@@ -12,7 +12,7 @@ import { createContext, useContext, useState, type ReactNode } from "react";
 // Type for a single item in the cart, including quantity
 type CartItem = {
   id: number;
-  name: string;
+  title: string;
   price: number;
   quantity: number;
 };
@@ -20,7 +20,7 @@ type CartItem = {
 // Type for an item to be added (without quantity)
 type Item = {
   id: number;
-  name: string;
+  title: string;
   price: number;
 };
 
