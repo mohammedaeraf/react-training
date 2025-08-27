@@ -74,6 +74,18 @@ export const CartProvider = (props: CartProviderProps) => {
     });
   };
 
+  const updateQuantity = (itemId: number, newQuantity: number) => {
+    setCart((existingCart: CartItem[]) => {
+      return existingCart
+        .map((cartItem) =>
+          cartItem.id === itemId
+            ? { ...cartItem, quantity: newQuantity }
+            : cartItem
+        )
+        .filter((cartItem) => cartItem.quantity > 0); // remove if quantity <= 0
+    });
+  };
+
   // Function to clear all items from the cart
   const clearCart = () => setCart([]);
 
