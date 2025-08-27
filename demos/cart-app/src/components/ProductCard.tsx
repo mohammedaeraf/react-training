@@ -5,8 +5,6 @@ type Rating = {
   count: number;
 };
 
-type RatingProps = Rating;
-
 type Product = {
   id: number;
   title: string;
@@ -18,23 +16,6 @@ type Product = {
 };
 
 type ProductCardProps = Product;
-
-const ProductRating = (props: RatingProps) => {
-  // Round rating to nearest integer
-  const stars = Math.round(props.rate);
-
-  return (
-    <div>
-      {/* Render stars */}
-      {Array.from({ length: 5 }, (_, i) => (
-        <span key={i} className={i < stars ? "text-warning" : "text-muted"}>
-          ★
-        </span>
-      ))}
-      <small className="ms-2 text-muted">({props.count})</small>
-    </div>
-  );
-};
 
 const ProductCard = (product: ProductCardProps) => {
   let cartContext = useCart();
@@ -51,10 +32,7 @@ const ProductCard = (product: ProductCardProps) => {
         <h6 className="card-subtitle mb-2 text-muted">{product.category}</h6>
         <p className="card-text small flex-grow-1">{product.description}</p>
         <h6 className="fw-bold">${product.price}</h6>
-        <ProductRating
-          rate={product.rating.rate}
-          count={product.rating.count}
-        />
+
         <button
           className="btn btn-primary mt-auto"
           onClick={() => cartContext.addToCart(product)}
