@@ -28,6 +28,7 @@ type Item = {
 type CartContextType = {
   cart: CartItem[]; // Array of items in the cart
   addToCart: (item: Item) => void; // Function to add an item to the cart
+  updateQuantity: (itemId: number, quantity: number) => void;
   clearCart: () => void; // Function to clear the cart
 };
 
@@ -91,7 +92,9 @@ export const CartProvider = (props: CartProviderProps) => {
 
   // Provide cart state and functions to all children components
   return (
-    <CartContext.Provider value={{ cart, addToCart, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, updateQuantity, clearCart }}
+    >
       {props.children}
     </CartContext.Provider>
   );
