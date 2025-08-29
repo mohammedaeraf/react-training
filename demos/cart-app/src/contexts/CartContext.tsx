@@ -27,6 +27,7 @@ type Item = {
 // The shape of the context value
 type CartContextType = {
   cart: CartItem[]; // Array of items in the cart
+  cartCount: number;
   addToCart: (item: Item) => void; // Function to add an item to the cart
   updateQuantity: (itemId: number, quantity: number) => void;
   clearCart: () => void; // Function to clear the cart
@@ -56,6 +57,8 @@ export const CartProvider = (props: CartProviderProps) => {
   // State to hold the cart items
   const [cart, setCart] = useState<CartItem[]>([]);
 
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
   // Function to add an item to the cart (or increase quantity if it exists)
   const addToCart = (item: Item) => {
     setCart((existingCart: CartItem[]) => {
@@ -64,18 +67,22 @@ export const CartProvider = (props: CartProviderProps) => {
       );
       if (found) {
         // If item already in cart, increase its quantity
+        // console.log("Item already in cart, increasing quantity");
         return existingCart.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         );
+      } else {
+        // console.log("Adding new item to cart");
+        return [...existingCart, { ...item, quantity: 1 }];
       }
       // If item not in cart, add it with quantity 1
-      return [...existingCart, { ...item, quantity: 1 }];
     });
   };
 
   const updateQuantity = (itemId: number, newQuantity: number) => {
+    console.log("Updating quantity", itemId, newQuantity);
     setCart((existingCart: CartItem[]) => {
       return existingCart
         .map((cartItem) =>
@@ -93,7 +100,7 @@ export const CartProvider = (props: CartProviderProps) => {
   // Provide cart state and functions to all children components
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, updateQuantity, clearCart }}
+      value={{ cart, cartCount, addToCart, updateQuantity, clearCart }}
     >
       {props.children}
     </CartContext.Provider>
