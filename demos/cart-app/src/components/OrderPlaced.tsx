@@ -48,6 +48,8 @@ const OrderPlaced = () => {
       }
     }
 
+    // Submit data to the API
+    
     setLoading(false);
   }, []);
 
