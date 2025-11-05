@@ -22,6 +22,30 @@ function CourseList() {
       description:
         "Frontend Development using React and TypeScript.. Frontend Development using React and TypeScriptFrontend Development using React and TypeScript",
     },
+    {
+      id: "AI & ChatGPT",
+      title: "AI & ChatGPT",
+      duration: "30 days",
+      description: "AI & ChatGPT",
+    },
+    {
+      id: "AI & ChatGPT",
+      title: "AI & ChatGPT",
+      duration: "30 days",
+      description: "AI & ChatGPT",
+    },
+    {
+      id: "AI & ChatGPT",
+      title: "AI & ChatGPT",
+      duration: "30 days",
+      description: "AI & ChatGPT",
+    },
+    {
+      id: "AI & ChatGPT",
+      title: "AI & ChatGPT",
+      duration: "30 days",
+      description: "AI & ChatGPT",
+    },
   ];
 
   return (
