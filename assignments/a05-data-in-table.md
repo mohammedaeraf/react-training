@@ -1,4 +1,4 @@
-## 🧑‍💻 **Assignment 03 – Display Employee Data in a Table**
+## 🧑‍💻 **Assignment 05 – Display Employee Data in a Table**
 
 ### 🎯 Objective:
 
@@ -47,18 +47,3 @@ Create a **React component** that displays a list of **employees** using a stati
 | 3  | Charlie | Finance    | Analyst     | 65000  |
 
 > ✅ Use Bootstrap classes like `table`, `table-striped`, `table-bordered` for styling.
-
----
-
-### 🚀 Bonus (Optional):
-
-* Highlight the highest-paid employee row using a different background color.
-* Add a heading above the table like “Employee Directory”.
-
----
-
-### 📁 Submission:
-
-* File: `src/components/EmployeeTable.tsx`
-* Import and display this component in `App.tsx`
-* Submit your code via GitHub repo link 
