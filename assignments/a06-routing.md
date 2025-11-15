@@ -1,4 +1,4 @@
-## 🧑‍💻 Assignment 05 – Routing Basics 
+## 🧑‍💻 Assignment 06 – Routing Basics 
 
 ### 🎯 **Objective**
 
@@ -36,42 +36,3 @@ Build a multi-page React app using **`react-router-dom`** with multiple routes a
    * Feedback (`/feedback`)
 
 6. Style the app using Bootstrap or any other CSS framework.
-
----
-
-### ✅ **Bonus (Optional)**
-
-* Highlight the **active link** using `NavLink`.
-* Add some cards or images to make pages visually appealing.
-
----
-
-### 🧠 **Learning Outcomes**
-
-By completing this assignment, you will:
-
-* Understand and implement **basic routing** in React
-* Learn how to structure a multi-page application
-* Practice using **navigation links** for switching between views
-
----
-
-### 📁 **Suggested File Structure**
-
-```
-src/
-├── App.tsx
-├── main.tsx
-├── pages/
-│   ├── Home.tsx
-│   ├── Courses.tsx
-│   ├── Instructors.tsx
-│   └── Feedback.tsx
-```
-
----
-
-### 📝 **Submission Instructions**
-
-* Submit a GitHub repo 
-* Make sure all routes work and components render properly.

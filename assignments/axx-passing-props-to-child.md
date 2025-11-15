@@ -1,4 +1,4 @@
-# 📝 Assignment 06 – Passing Props to Child Component
+# 📝 Assignment 07 – Passing Props to Child Component
 
 ### 🎯 **Objective**
 
