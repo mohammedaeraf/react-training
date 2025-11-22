@@ -24,8 +24,3 @@ Build a React component to fetch and display data on component load from a publi
 - Use `useEffect` and `useState` for data fetching and state management.
 - Use unique keys for each card.
 - Use Bootstrap classes for styling.
-
----
-
-**Deliverable:**  
-A React component (`RecipeList`) that fetches and displays data in Bootstrap Cards, styled and arranged in a responsive grid.
