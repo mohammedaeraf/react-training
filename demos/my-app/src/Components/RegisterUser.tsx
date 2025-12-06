@@ -39,11 +39,6 @@ const RegisterUser = () => {
       return;
     }
 
-    // if (confirmPassword.trim().length < 6) {
-    //   setError("Confirm Password cannot be less than 6 chars");
-    //   return;
-    // }
-
     if (confirmPassword != password) {
       setError("Password and Confirm Password do not match");
       return;
@@ -56,31 +51,21 @@ const RegisterUser = () => {
     setPassword("");
     setConfirmPassword("");
 
-
     // TODO: Write code to post data to API
 
-    // if (!password) {
-    //   setError("Password is required.");
-    //   return;
-    // }
-    // if (password.length < 6) {
-    //   setError("Password must be at least 6 characters.");
-    //   return;
-    // }
-    // if (password !== confirmPassword) {
-    //   setError("Passwords do not match.");
-    //   return;
-    // }
-    // // TODO - add code to call POST API
     // setSuccess("Registration successful!");
-    
   };
+
+  let errorMessage = null;
+  if (errorMessage) {
+    errorMessage = <div className="alert alert-danger">{error}</div>;
+  }
 
   return (
     <div className="container mt-4" style={{ maxWidth: 600 }}>
       <h2 className="mb-4">Register User</h2>
 
-      {error && <div className="alert alert-danger">{error}</div>}
+      {errorMessage}
 
       {success && <div className="alert alert-success">{success}</div>}
 
