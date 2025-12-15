@@ -6,7 +6,7 @@ function ThemeToggler() {
 
   return (
     <button
-      className={`btn ${theme === "light" ? "btn-dark" : "btn-light"} mb-4`}
+      className="btn btn-primary mb-4"
       onClick={toggleTheme}
     >
       Switch to {theme === "light" ? "Dark" : "Light"} Theme
