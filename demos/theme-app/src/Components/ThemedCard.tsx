@@ -2,13 +2,13 @@ import { useContext } from "react";
 import ThemeContext from "../Context/ThemeContext";
 
 function ThemedCard() {
-  const { theme } = useContext(ThemeContext);
+  const context = useContext(ThemeContext);
 
   return (
     <div className="mb-4">
       <div
         className={`card ${
-          theme === "dark" ? "bg-dark text-white" : "bg-white text-dark"
+          context.theme === "dark" ? "bg-dark text-white" : "bg-white text-dark"
         }`}
       >
         <div className="card-body">
