@@ -1,9 +1,14 @@
 import { useContext } from "react";
 import { ThemeContext } from "../Context/ThemeContext";
 import "./ThemeCard.css";
+
+// Component that displays a Bootstrap card with theme-aware styling
 function ThemeCard() {
+  // Access the theme context to determine current theme
   let context = useContext(ThemeContext);
   return (
+    // Card container with dynamic classes based on theme
+    // Applies dark or light background and text colors
     <div
       className={
         `card myCard m-4 ` +
