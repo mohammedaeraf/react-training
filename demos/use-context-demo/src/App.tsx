@@ -1,13 +1,22 @@
+import { useState } from "react";
 import "./App.css";
-import ThemeComponent from "./Components/ThemeComponent";
+import ThemeToggler from "./Components/ThemeToggler";
 import { ThemeContext } from "./Context/ThemeContext";
+import ThemeCard from "./Components/ThemeCard";
 
 function App() {
+  const [theme, setTheme] = useState<string>("light");
+
+  const toggleTheme = () => {
+    setTheme((current) => (current === "light" ? "dark" : "light"));
+  };
+
   return (
-    <ThemeContext.Provider value="light">
-      <div>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div className="container">
         <h1>Use Context Demo</h1>
-        <ThemeComponent></ThemeComponent>
+        <ThemeToggler></ThemeToggler>
+        <ThemeCard></ThemeCard>
       </div>
     </ThemeContext.Provider>
   );
