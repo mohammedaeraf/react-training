@@ -15,9 +15,17 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className="min-vh-100 p-5">
+      <div
+        className={`min-vh-100 p-5 ${
+          theme === "light" ? "bg-light" : "bg-dark"
+        }`}
+      >
         <div className="container">
-          <h1 className="mb-4">React Theme Toggle using Bootstrap</h1>
+          <h1
+            className={`mb-4 ${theme === "light" ? "text-dark" : "text-light"}`}
+          >
+            React Theme Toggle using Bootstrap
+          </h1>
           <ThemeToggler />
           <ThemedCard />
           <ThemedTable />
