@@ -19,14 +19,23 @@ import RegisterUser from "./Components/RegisterUser";
 import Box from "./Components/Box";
 import Greeting from "./Components/Greeting";
 import CourseList from "./Components/CourseList";
+import Bag from "./Components/Bag";
 
 function App() {
   return (
-    <div>
-      {/* <CourseList /> */}
-      <Greeting name="Aslam" />
+    <div className="container">
+      <Greeting name="Aeraf" />
 
-      <Box type="briefcase">Hello World</Box>
+      <Bag type="backpack">It's a school Bag</Bag>
+
+      <Bag type="briefcase">
+        <h3 className="text-info">It's a Brief Case Bag</h3>
+        <p className="text-secondary">
+          It can store your important documents and also your laptop
+        </p>
+      </Bag>
+
+      {/* <Box type="briefcase">Hello World</Box>
       <Box type="suitcase">
         <p>This is inside a box.</p>
         <button>Click Me</button>
@@ -67,7 +76,7 @@ function App() {
             Link
           </button>
         </div>
-      </Box>
+      </Box> */}
     </div>
     // <BrowserRouter>
     //   <Header />

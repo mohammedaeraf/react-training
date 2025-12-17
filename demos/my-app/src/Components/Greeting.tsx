@@ -1,8 +1,11 @@
-type GreetingProps = {
+type Props = {
   name: string;
 };
-
-function Greeting(props: GreetingProps) {
-  return <h2 className="text-secondary">Hello, {props.name}!</h2>;
-}
+let Greeting = (props: Props) => {
+  return (
+    <div>
+      <h2 className="text-secondary py-5">Hello, {props.name}</h2>
+    </div>
+  );
+};
 export default Greeting;
