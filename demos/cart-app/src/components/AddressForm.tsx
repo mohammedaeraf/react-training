@@ -100,7 +100,7 @@ const AddressForm = () => {
                   id="street"
                   value={address.street}
                   onChange={(e) => handleInputChange("street", e.target.value)}
-                  placeholder="123 Main St"
+                  placeholder="Azad Nagar 1st Cross"
                   required
                 />
               </div>
@@ -118,7 +118,7 @@ const AddressForm = () => {
                   onChange={(e) =>
                     handleInputChange("apartment", e.target.value)
                   }
-                  placeholder="Apt 456"
+                  placeholder="Sameena Complex, 2nd Floor"
                 />
               </div>
 
@@ -134,7 +134,7 @@ const AddressForm = () => {
                     id="city"
                     value={address.city}
                     onChange={(e) => handleInputChange("city", e.target.value)}
-                    placeholder="New York"
+                    placeholder="Bhatkal"
                     required
                   />
                 </div>
@@ -149,7 +149,7 @@ const AddressForm = () => {
                     id="state"
                     value={address.state}
                     onChange={(e) => handleInputChange("state", e.target.value)}
-                    placeholder="NY"
+                    placeholder="Karnataka"
                     required
                   />
                 </div>
@@ -166,7 +166,7 @@ const AddressForm = () => {
                     onChange={(e) =>
                       handleInputChange("zipCode", e.target.value)
                     }
-                    placeholder="10001"
+                    placeholder="581320"
                     required
                   />
                 </div>
@@ -185,7 +185,9 @@ const AddressForm = () => {
                   required
                 >
                   <option value="">Select Country</option>
-                  <option value="India">India</option>
+                  <option value="India" selected>
+                    India
+                  </option>
                   <option value="UAE">UAE</option>
                   <option value="Saudi Arabic">Saudi Arabia</option>
                   <option value="Australia">Australia</option>
