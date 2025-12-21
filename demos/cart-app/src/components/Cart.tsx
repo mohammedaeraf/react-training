@@ -31,24 +31,13 @@ const Cart = () => {
               <td>{item.title}</td>
               <td className="text-center">
                 <div className="btn-group" role="group">
-                  <button
-                    className="btn btn-outline-secondary btn-sm"
-                    onClick={() =>
-                      cartContext.updateQuantity(item.id, item.quantity - 1)
-                    }
-                    disabled={item.quantity <= 1}
-                  >
+                  <button className="btn btn-outline-secondary btn-sm">
                     –
                   </button>
                   <span className="px-3 d-flex align-items-center">
                     {item.quantity}
                   </span>
-                  <button
-                    className="btn btn-outline-secondary btn-sm"
-                    onClick={() =>
-                      cartContext.updateQuantity(item.id, item.quantity + 1)
-                    }
-                  >
+                  <button className="btn btn-outline-secondary btn-sm">
                     +
                   </button>
                 </div>

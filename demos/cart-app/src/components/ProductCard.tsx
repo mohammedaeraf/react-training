@@ -35,7 +35,11 @@ const ProductCard = (product: ProductCardProps) => {
 
         <button
           className="btn btn-primary mt-auto"
-          onClick={() => cartContext.addToCart(product)}
+          onClick={() => cartContext.addToCart({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+          })}
         >
           Add to Cart
         </button>
