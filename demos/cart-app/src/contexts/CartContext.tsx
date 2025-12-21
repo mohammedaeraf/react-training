@@ -36,9 +36,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 // Custom hook to access the cart context safely
 export const useCart = () => {
-  const ctx = useContext(CartContext);
-  if (!ctx) throw new Error("useCart must be used within CartProvider");
-  return ctx;
+  return useContext(CartContext);
 };
 
 // Props type for the CartProvider (expects children)
