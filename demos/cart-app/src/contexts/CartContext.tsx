@@ -55,21 +55,24 @@ export const CartProvider = (props: CartProviderProps) => {
   // State to hold the cart items
   const [cart, setCart] = useState<CartItem[]>([]);
 
+  // Calculate the total number of items in the cart across all products
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
-  // Function to add an item to the cart (or increase quantity if it exists)
+  // Function to add an item to the cart (adds a new item with quantity 1 each time)
   const addToCart = (item: Item) => {
-    setCart((existingCart: CartItem[]) => [...existingCart, { ...item, quantity: 1 }]);
+    setCart((existingCart: CartItem[]) => [
+      ...existingCart,
+      { ...item, quantity: 1 },
+    ]);
   };
 
   // Provide cart state and functions to all children components
   return (
-    <CartContext.Provider
-      value={{ cart, cartCount, addToCart }}
-    >
+    <CartContext.Provider value={{ cart, cartCount, addToCart }}>
       {props.children}
     </CartContext.Provider>
   );
 };
 
+// Export the CartContext as default for potential direct use
 export default CartContext;
