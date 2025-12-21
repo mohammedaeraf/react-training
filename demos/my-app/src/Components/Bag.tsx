@@ -1,6 +1,6 @@
 type BagProps = {
   type: string;
-  children: React.ReactNode;
+  children: any;
 };
 function Bag(props: BagProps) {
   return (
@@ -10,4 +10,5 @@ function Bag(props: BagProps) {
     </div>
   );
 }
+
 export default Bag;

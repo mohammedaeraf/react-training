@@ -30,16 +30,18 @@ const ProductCard = (product: ProductCardProps) => {
       <div className="card-body d-flex flex-column">
         <h5 className="card-title">{product.title}</h5>
         <h6 className="card-subtitle mb-2 text-muted">{product.category}</h6>
-        <p className="card-text small flex-grow-1">{product.description}</p>
+        <p className="card-text small flex-grow-1 ">{product.description}</p>
         <h6 className="fw-bold">${product.price}</h6>
 
         <button
           className="btn btn-primary mt-auto"
-          onClick={() => cartContext.addToCart({
-            id: product.id,
-            title: product.title,
-            price: product.price,
-          })}
+          onClick={() =>
+            cartContext.addToCart({
+              id: product.id,
+              title: product.title,
+              price: product.price,
+            })
+          }
         >
           Add to Cart
         </button>
