@@ -29,6 +29,8 @@ type CartContextType = {
   cart: CartItem[]; // Array of items in the cart
   cartCount: number;
   addToCart: (item: Item) => void; // Function to add an item to the cart
+  updateCart: (itemId: number, quantity: number) => void;
+  emptyCart: () => void;
 };
 
 // Create the CartContext with undefined as default (enforces usage inside provider)
@@ -60,15 +62,43 @@ export const CartProvider = (props: CartProviderProps) => {
 
   // Function to add an item to the cart (adds a new item with quantity 1 each time)
   const addToCart = (item: Item) => {
-    setCart((existingCart: CartItem[]) => [
-      ...existingCart,
-      { ...item, quantity: 1 },
-    ]);
+    // todo: enhance to increase quantity if item already exists
+    setCart((existingCart: CartItem[]) => {
+      // Check if the item already exists in the cart
+      const existingItem = existingCart.find(
+        (cartItem) => cartItem.id === item.id
+      );
+
+      if (existingItem) {
+        return existingCart.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        );
+      }
+      return [...existingCart, { ...item, quantity: 1 }];
+    });
   };
+
+  const updateCart = (itemId: number, newQuantity: number) => {
+    setCart((existingCart: CartItem[]) => {
+      return existingCart
+        .map((cartItem) =>
+          cartItem.id === itemId
+            ? { ...cartItem, quantity: newQuantity }
+            : cartItem
+        )
+        .filter((cartItem) => cartItem.quantity > 0); // remove if quantity <= 0
+    });
+  };
+
+  const emptyCart = () => {
+    setCart([]);
+  }
 
   // Provide cart state and functions to all children components
   return (
-    <CartContext.Provider value={{ cart, cartCount, addToCart }}>
+    <CartContext.Provider value={{ cart, cartCount, addToCart, updateCart, emptyCart }}>
       {props.children}
     </CartContext.Provider>
   );

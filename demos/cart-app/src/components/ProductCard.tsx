@@ -34,7 +34,9 @@ const ProductCard = (product: ProductCardProps) => {
         <h6 className="fw-bold">${product.price}</h6>
 
         <button
+          type="button"
           className="btn btn-primary mt-auto"
+          aria-label="Add to cart"
           onClick={() =>
             cartContext.addToCart({
               id: product.id,
@@ -43,7 +45,8 @@ const ProductCard = (product: ProductCardProps) => {
             })
           }
         >
-          Add to Cart
+          <i className="bi bi-cart-plus me-2" aria-hidden="true"></i>
+          <span>Add to Cart</span>
         </button>
       </div>
     </div>
