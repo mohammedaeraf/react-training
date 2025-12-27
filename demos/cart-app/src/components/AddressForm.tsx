@@ -7,26 +7,27 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface AddressData {
+type AddressData = {
   street: string;
   apartment?: string;
   city: string;
   state: string;
   zipCode: string;
   country: string;
-}
+};
 
 const AddressForm = () => {
-  const [address, setAddress] = useState<AddressData>({
+  const blankAddress: AddressData = {
     street: "",
     apartment: "",
     city: "",
     state: "",
     zipCode: "",
     country: "",
-  });
+  };
 
-  const [error, setError] = useState<string | null>(null);
+  const [address, setAddress] = useState<AddressData>(blankAddress);
+
   const navigate = useNavigate();
 
   const handleInputChange = (field: keyof AddressData, value: string) => {
@@ -36,22 +37,8 @@ const AddressForm = () => {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    // Validate required fields
-    if (
-      !address.street.trim() ||
-      !address.city.trim() ||
-      !address.state.trim() ||
-      !address.zipCode.trim() ||
-      !address.country.trim()
-    ) {
-      setError("Please fill in all required fields");
-      return;
-    }
-
-    setError(null);
 
     // Save the complete address
     localStorage.setItem("orderAddress", JSON.stringify(address));
@@ -69,22 +56,6 @@ const AddressForm = () => {
               Enter your complete delivery information
             </p>
           </div>
-
-          {/* Error Message */}
-          {error && (
-            <div
-              className="alert alert-danger alert-dismissible fade show"
-              role="alert"
-            >
-              {error}
-              <button
-                type="button"
-                className="btn-close"
-                onClick={() => setError(null)}
-                aria-label="Close"
-              ></button>
-            </div>
-          )}
 
           {/* Address Form */}
           <form onSubmit={handleSubmit} className="card border-0 shadow-sm">
