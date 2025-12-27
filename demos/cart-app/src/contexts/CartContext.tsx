@@ -7,7 +7,13 @@
  * It includes the context definition, a custom hook for easy access, and the CartProvider component that manages the cart state.
  */
 
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
 
 // Type for a single item in the cart, including quantity
 type CartItem = {
@@ -54,8 +60,11 @@ type CartProviderProps = {
  * - Wrap your app with <CartProvider> in App.tsx to make cart state available everywhere.
  */
 export const CartProvider = (props: CartProviderProps) => {
-  // State to hold the cart items
-  const [cart, setCart] = useState<CartItem[]>([]);
+  // State to hold the cart items (load from localStorage if present)
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    const saved = localStorage.getItem("cart");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   // Calculate the total number of items in the cart across all products
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
@@ -94,11 +103,18 @@ export const CartProvider = (props: CartProviderProps) => {
 
   const emptyCart = () => {
     setCart([]);
-  }
+  };
+
+  // Persist cart to localStorage whenever it changes (simple approach)
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   // Provide cart state and functions to all children components
   return (
-    <CartContext.Provider value={{ cart, cartCount, addToCart, updateCart, emptyCart }}>
+    <CartContext.Provider
+      value={{ cart, cartCount, addToCart, updateCart, emptyCart }}
+    >
       {props.children}
     </CartContext.Provider>
   );
