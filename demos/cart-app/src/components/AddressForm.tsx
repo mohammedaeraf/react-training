@@ -1,7 +1,14 @@
 /**
  * AddressForm.tsx
  *
- * Enhanced with multiple address fields and professional Bootstrap layout
+ * Purpose:
+ * A controlled form component that collects the delivery address for an order.
+ * - Uses local component state to manage form inputs and persists the completed address to localStorage on submit.
+ * - After saving, the user is navigated to the order summary page (`/order`).
+ *
+ * Implementation notes:
+ * - Fields are required where marked and basic HTML validation is used (required attributes).
+ * - The component uses a simple save-to-localStorage strategy; in a real app this would call an API or update app state.
  */
 
 import { useState } from "react";
@@ -17,6 +24,8 @@ type AddressData = {
 };
 
 const AddressForm = () => {
+  // Default empty address object used to initialize the controlled form state.
+  // Keeping a single shape here makes it easy to reset the form and ensures TypeScript safety.
   const blankAddress: AddressData = {
     street: "",
     apartment: "",
@@ -26,10 +35,16 @@ const AddressForm = () => {
     country: "",
   };
 
+  // Address state is a controlled object representing all form fields. Use `setAddress` to update a specific property.
   const [address, setAddress] = useState<AddressData>(blankAddress);
 
   const navigate = useNavigate();
 
+  /**
+   * handleInputChange(field, value)
+   * - Generic updater for controlled inputs: takes the key of the address object and the new value.
+   * - Uses functional setState to avoid stale closures when multiple updates happen quickly.
+   */
   const handleInputChange = (field: keyof AddressData, value: string) => {
     setAddress((prev) => ({
       ...prev,
@@ -37,11 +52,19 @@ const AddressForm = () => {
     }));
   };
 
+  /**
+   * handleSubmit(event)
+   * - Prevents default form submission and performs a side-effect: persist the completed address to localStorage.
+   * - Navigates the user to `/order` where the address and cart will be used to create the final order.
+   * - Note: this component relies on HTML `required` attributes for basic validation; for more complex rules, add explicit checks here and display helpful errors.
+   */
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
-    // Save the complete address
+    // Persist the address so the order summary can read it (simple client-side flow used for this demo)
+
     localStorage.setItem("orderAddress", JSON.stringify(address));
+    // Move to the next step in the checkout flow
     navigate("/order");
   };
 
@@ -148,6 +171,11 @@ const AddressForm = () => {
                 <label htmlFor="country" className="form-label fw-semibold">
                   Country <span className="text-danger">*</span>
                 </label>
+                {/*
+                  Country select (controlled):
+                  - Because the select is controlled via `value={address.country}`, the `selected` attribute on options is unnecessary and should be removed.
+                  - To default to a value (e.g., India) set it in the initial `blankAddress` instead of using `selected` here.
+                */}
                 <select
                   className="form-select"
                   id="country"
@@ -156,9 +184,7 @@ const AddressForm = () => {
                   required
                 >
                   <option value="">Select Country</option>
-                  <option value="India" selected>
-                    India
-                  </option>
+                  <option value="India">India</option>
                   <option value="UAE">UAE</option>
                   <option value="Saudi Arabic">Saudi Arabia</option>
                   <option value="Australia">Australia</option>

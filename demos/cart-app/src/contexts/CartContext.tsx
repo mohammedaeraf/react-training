@@ -2,9 +2,24 @@
  * CartContext.tsx
  *
  * Purpose:
- * This file defines the Cart Context for the CartApp. It provides a global state for the shopping cart,
- * allowing any component in the app to access and modify the cart (add items, clear cart) without prop drilling.
- * It includes the context definition, a custom hook for easy access, and the CartProvider component that manages the cart state.
+ * This module implements a React Context for the shopping cart used across the Cart App.
+ * It centralizes cart state (items and quantities) and exposes helper functions to
+ * modify the cart without prop drilling. The cart is persisted to localStorage so the
+ * user's cart survives page refreshes.
+ *
+ * Usage example:
+ *
+ * // Wrap your app:
+ * <CartProvider>
+ *   <App />
+ * </CartProvider>
+ *
+ * // Consume in a component:
+ * const { cart, addToCart, updateCart, emptyCart, cartCount } = useCart();
+ *
+ * Notes / considerations:
+ * - Persistence is intentionally simple (writes full cart JSON on every change). For large apps, consider debouncing or using a more robust storage strategy.
+ * - Functions mutate logical state only; the persistence side-effect is handled by useEffect below.
  */
 
 import {
@@ -15,80 +30,99 @@ import {
   type ReactNode,
 } from "react";
 
-// Type for a single item in the cart, including quantity
+// --- Types ---
+// A single cart item stored in context/localStorage. Quantity denotes how many units are present.
 type CartItem = {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
+  id: number; // product identifier (must be stable)
+  title: string; // display title for convenience
+  price: number; // numeric price (in smallest currency unit or as agreed)
+  quantity: number; // number of units of this product in the cart
 };
 
-// Type for an item to be added (without quantity)
+n; // Minimal shape accepted by addToCart. Quantity is omitted because the function increments by 1.
 type Item = {
   id: number;
   title: string;
   price: number;
 };
 
-// The shape of the context value
+// Public interface of the CartContext provided to consumers via useCart().
 type CartContextType = {
-  cart: CartItem[]; // Array of items in the cart
-  cartCount: number;
-  addToCart: (item: Item) => void; // Function to add an item to the cart
-  updateCart: (itemId: number, quantity: number) => void;
-  emptyCart: () => void;
+  cart: CartItem[]; // current items in cart (read-only; mutate via provided functions)
+  cartCount: number; // total number of units across all items (convenience value)
+  addToCart: (item: Item) => void; // adds one unit of `item` to the cart (increments if present)
+  updateCart: (itemId: number, quantity: number) => void; // set quantity for a given item (removes if <= 0)
+  emptyCart: () => void; // remove all items from cart
 };
 
-// Create the CartContext with undefined as default (enforces usage inside provider)
+// Create the CartContext with undefined to force callers to use the provider.
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-// Custom hook to access the cart context safely
+// Custom hook wrapper for safe access; throws a helpful error when used outside a provider.
 export const useCart = () => {
   const ctx = useContext(CartContext);
   if (!ctx) throw new Error("useCart must be used within CartProvider");
   return ctx;
 };
 
-// Props type for the CartProvider (expects children)
+// Props for the provider component: only children are required.
 type CartProviderProps = {
   children: ReactNode;
 };
 
 /**
- * CartProvider component
- * - Holds the cart state and provides addToCart and clearCart functions.
- * - Wrap your app with <CartProvider> in App.tsx to make cart state available everywhere.
+ * CartProvider
+ * - Manages cart state and persistence.
+ * - Provides helper functions to modify the cart safely.
+ *
+ * Implementation details:
+ * - Loads initial state from localStorage on first render.
+ * - Persists the cart to localStorage on every change (simple and reliable for small carts).
+ * - addToCart increments quantity when the item exists; otherwise it appends the item with quantity 1.
+ * - updateCart sets a specific quantity and removes items when quantity <= 0.
  */
 export const CartProvider = (props: CartProviderProps) => {
-  // State to hold the cart items (load from localStorage if present)
+  // Initialize cart from localStorage. Using lazy initializer prevents reading localStorage on every render.
   const [cart, setCart] = useState<CartItem[]>(() => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  // Calculate the total number of items in the cart across all products
+  // Derive the total count of units in the cart for convenience in UI (e.g., badge count).
+
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
-  // Function to add an item to the cart (adds a new item with quantity 1 each time)
+  /**
+   * addToCart(item)
+   * - If the item is already present, increases its quantity by 1.
+   * - Otherwise, adds the item with quantity 1.
+   * - Uses functional setState to avoid stale closures.
+   */
   const addToCart = (item: Item) => {
-    // todo: enhance to increase quantity if item already exists
     setCart((existingCart: CartItem[]) => {
-      // Check if the item already exists in the cart
       const existingItem = existingCart.find(
         (cartItem) => cartItem.id === item.id
       );
 
       if (existingItem) {
+        // increment quantity for the existing item
         return existingCart.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         );
       }
+
+      // add new item (quantity defaults to 1)
       return [...existingCart, { ...item, quantity: 1 }];
     });
   };
 
+  /**
+   * updateCart(itemId, newQuantity)
+   * - Sets the given item's quantity to newQuantity.
+   * - Removes the item when newQuantity <= 0 to keep the cart clean.
+   */
   const updateCart = (itemId: number, newQuantity: number) => {
     setCart((existingCart: CartItem[]) => {
       return existingCart
@@ -97,20 +131,30 @@ export const CartProvider = (props: CartProviderProps) => {
             ? { ...cartItem, quantity: newQuantity }
             : cartItem
         )
-        .filter((cartItem) => cartItem.quantity > 0); // remove if quantity <= 0
+        .filter((cartItem) => cartItem.quantity > 0);
     });
   };
 
+  /**
+   * emptyCart()
+   * - Clears the in-memory cart; the useEffect below persists the empty cart to localStorage.
+   */
   const emptyCart = () => {
     setCart([]);
   };
 
-  // Persist cart to localStorage whenever it changes (simple approach)
+  // Persist the cart to localStorage whenever it changes. For production apps consider debouncing or storing diffs.
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (err) {
+      // Failing to persist should not crash the app — log and proceed. In real apps, report to telemetry.
+      // eslint-disable-next-line no-console
+      console.warn("Failed to persist cart to localStorage", err);
+    }
   }, [cart]);
 
-  // Provide cart state and functions to all children components
+  // Provide cart state and functions to all children components.
   return (
     <CartContext.Provider
       value={{ cart, cartCount, addToCart, updateCart, emptyCart }}
@@ -120,5 +164,5 @@ export const CartProvider = (props: CartProviderProps) => {
   );
 };
 
-// Export the CartContext as default for potential direct use
+// Default export kept for compatibility if any part of the codebase imports the context directly.
 export default CartContext;

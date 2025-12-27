@@ -20,34 +20,62 @@ type AddressData = {
 };
 
 const OrderPlaced = () => {
+  // Holds the address loaded from a previous step (saved under "orderAddress").
+  // If null, we show a message telling the user to complete the address form.
   const [address, setAddress] = useState<AddressData | null>(null);
   const { emptyCart } = useCart();
 
   useEffect(() => {
+    // This effect runs once on mount to:
+    // 1) read the saved address from localStorage and set it so the UI can render it
+    // 2) place the order (simple demo POST) and clean up localStorage afterwards
+    // 3) clear the in-memory cart via `emptyCart()` so other parts of the app reflect the cleared state
     const storedAddress = localStorage.getItem("orderAddress");
 
     if (storedAddress) {
       const parsedAddress: AddressData = JSON.parse(storedAddress);
       setAddress(parsedAddress);
     }
+
+    // NOTE: we call emptyCart() here to ensure the UI no longer shows items —
+    // in a real app, consider clearing the cart only after the order is successfully created,
+    // to avoid losing the user's cart if the API call fails.
     emptyCart();
 
-    // call API to place order
+    // Simple demo API call to create the order. This is intentionally minimal:
+    // - No loading or error state is handled here
+    // - The network call is performed with `fetch` (no retries/timeouts)
+    // Improvements:
+    // - Move the API call into a reusable function (e.g. `placeOrder`) so it can be tested and shared
+    // - Use async/await and try/catch to manage errors and set UI state accordingly
     const storedCart = localStorage.getItem("cart");
     if (storedAddress && storedCart) {
       const parsedAddress: AddressData = JSON.parse(storedAddress);
       const parsedCart = JSON.parse(storedCart);
 
+      // POST the cart + address to the backend. On success, remove persisted checkout data.
+      // This demo expects a 2xx response to indicate success.
       fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cart: parsedCart, address: parsedAddress }),
-      }).then((res) => {
-        if (res.ok) {
-          localStorage.removeItem("cart");
-          localStorage.removeItem("orderAddress");
-        }
-      });
+      })
+        .then((res) => {
+          if (res.ok) {
+            // On success remove persisted cart and address so the checkout flow resets.
+            localStorage.removeItem("cart");
+            localStorage.removeItem("orderAddress");
+          } else {
+            // For clarity: log non-OK responses. In production surface a user-visible error instead.
+            // eslint-disable-next-line no-console
+            console.warn("Order API returned non-OK status", res.status);
+          }
+        })
+        .catch((err) => {
+          // Network error handling: log and consider surfacing to the user with state
+          // eslint-disable-next-line no-console
+          console.error("Failed to place order", err);
+        });
     }
   }, []);
 
