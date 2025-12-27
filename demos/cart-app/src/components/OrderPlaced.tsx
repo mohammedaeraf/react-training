@@ -8,6 +8,7 @@
  */
 
 import { useEffect, useState } from "react";
+// import { useCart } from "../contexts/CartContext";
 
 interface AddressData {
   street: string;
@@ -20,13 +21,34 @@ interface AddressData {
 
 const OrderPlaced = () => {
   const [address, setAddress] = useState<AddressData | null>(null);
+  // const { emptyCart } = useCart();
 
   useEffect(() => {
     const storedAddress = localStorage.getItem("orderAddress");
+
     if (storedAddress) {
       const parsedAddress: AddressData = JSON.parse(storedAddress);
       setAddress(parsedAddress);
     }
+
+    // call API to place order
+    // const storedCart = localStorage.getItem("cart");
+    // if (storedAddress && storedCart) {
+    //   const parsedAddress: AddressData = JSON.parse(storedAddress);
+    //   const parsedCart = JSON.parse(storedCart);
+
+    //   fetch("/api/orders", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ cart: parsedCart, address: parsedAddress }),
+    //   }).then((res) => {
+    //     if (res.ok) {
+    //       localStorage.removeItem("cart");
+    //       localStorage.removeItem("orderAddress");
+    //       emptyCart();
+    //     }
+    //   });
+    // }
   }, []);
 
   if (!address) {
