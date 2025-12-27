@@ -8,20 +8,20 @@
  */
 
 import { useEffect, useState } from "react";
-// import { useCart } from "../contexts/CartContext";
+import { useCart } from "../contexts/CartContext";
 
-interface AddressData {
+type AddressData = {
   street: string;
   apartment?: string;
   city: string;
   state: string;
   zipCode: string;
   country: string;
-}
+};
 
 const OrderPlaced = () => {
   const [address, setAddress] = useState<AddressData | null>(null);
-  // const { emptyCart } = useCart();
+  const { emptyCart } = useCart();
 
   useEffect(() => {
     const storedAddress = localStorage.getItem("orderAddress");
@@ -30,25 +30,25 @@ const OrderPlaced = () => {
       const parsedAddress: AddressData = JSON.parse(storedAddress);
       setAddress(parsedAddress);
     }
+    emptyCart();
 
     // call API to place order
-    // const storedCart = localStorage.getItem("cart");
-    // if (storedAddress && storedCart) {
-    //   const parsedAddress: AddressData = JSON.parse(storedAddress);
-    //   const parsedCart = JSON.parse(storedCart);
+    const storedCart = localStorage.getItem("cart");
+    if (storedAddress && storedCart) {
+      const parsedAddress: AddressData = JSON.parse(storedAddress);
+      const parsedCart = JSON.parse(storedCart);
 
-    //   fetch("/api/orders", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ cart: parsedCart, address: parsedAddress }),
-    //   }).then((res) => {
-    //     if (res.ok) {
-    //       localStorage.removeItem("cart");
-    //       localStorage.removeItem("orderAddress");
-    //       emptyCart();
-    //     }
-    //   });
-    // }
+      fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cart: parsedCart, address: parsedAddress }),
+      }).then((res) => {
+        if (res.ok) {
+          localStorage.removeItem("cart");
+          localStorage.removeItem("orderAddress");
+        }
+      });
+    }
   }, []);
 
   if (!address) {

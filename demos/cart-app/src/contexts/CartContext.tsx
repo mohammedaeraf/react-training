@@ -62,8 +62,8 @@ type CartProviderProps = {
 export const CartProvider = (props: CartProviderProps) => {
   // State to hold the cart items (load from localStorage if present)
   const [cart, setCart] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
   });
 
   // Calculate the total number of items in the cart across all products
