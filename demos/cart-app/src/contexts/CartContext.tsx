@@ -39,7 +39,7 @@ type CartItem = {
   quantity: number; // number of units of this product in the cart
 };
 
-n; // Minimal shape accepted by addToCart. Quantity is omitted because the function increments by 1.
+// Minimal shape accepted by addToCart. Quantity is omitted because the function increments by 1.
 type Item = {
   id: number;
   title: string;
