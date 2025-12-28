@@ -64,9 +64,9 @@ git push -u origin main
 4. Select your React project repository.
 5. Configure:
 
-   - **Framework Preset** → _Create React App_ (or Vite if applicable).
+   - **Framework Preset** → _Vite_ .
    - **Build Command** → `npm run build`
-   - **Output Directory** → `build`
+   - **Output Directory** → `dist`
 
 6. Click **Deploy** 🚀.
 
