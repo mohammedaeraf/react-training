@@ -35,52 +35,11 @@ When you write a React app, you typically use modern JavaScript (ES6+), JSX, CSS
 
 When you create a React app (via **Create React App** or **Vite**), it comes with a build pipeline.
 
-### If using **Create React App**:
-
-- **Webpack** → Bundles JS, CSS, assets.
-- **Babel** → Converts JSX & ES6+ into browser-friendly JS.
-- **Terser** → Minifies JS.
-- **PostCSS** → Optimizes CSS.
-
 ### If using **Vite** (newer projects often use this):
 
 - Uses **esbuild** (much faster than Babel/Webpack).
 - Optimizes modules during dev & build.
 - Still bundles and minifies output.
-
----
-
-## 4. Build Process Steps in CRA (Create React App)
-
-1. **Start Development Server**
-
-   ```bash
-   npm start
-   ```
-
-   - Runs app in development mode.
-   - Uses Webpack Dev Server.
-
-2. **Build for Production**
-
-   ```bash
-   npm run build
-   ```
-
-   - Creates a `build/` folder with production files.
-
-3. **What’s inside the `build/` folder?**
-
-   - `index.html` → Entry point.
-   - `static/js/*.js` → Bundled, minified JS.
-   - `static/css/*.css` → Optimized CSS.
-   - `media/` → Images, fonts, etc.
-
-4. **Optimization done by build:**
-   ✅ Removes unused code (tree shaking).
-   ✅ Minifies JS and CSS.
-   ✅ Compresses images.
-   ✅ Adds content hashes for cache busting.
 
 ---
 
@@ -108,11 +67,17 @@ When you create a React app (via **Create React App** or **Vite**), it comes wit
    npm run preview
    ```
 
+4. **Optimization done by build:**
+   ✅ Removes unused code (tree shaking).
+   ✅ Minifies JS and CSS.
+   ✅ Compresses images.
+   ✅ Adds content hashes for cache busting.
+
 ---
 
-## 6. Deployment of Build Files
+## 5. Deployment of Build Files
 
-Once you have the build (`build/` or `dist/` folder):
+Once you have the build (`dist/` folder):
 
 - Upload files to any static hosting provider:
 
