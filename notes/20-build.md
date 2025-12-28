@@ -33,9 +33,9 @@ When you write a React app, you typically use modern JavaScript (ES6+), JSX, CSS
 
 ## 3. React Build Tools
 
-When you create a React app (via **Create React App** or **Vite**), it comes with a build pipeline.
+When you create a React app (via **Vite**), it comes with a build pipeline.
 
-### If using **Vite** (newer projects often use this):
+### If using **Vite**:
 
 - Uses **esbuild** (much faster than Babel/Webpack).
 - Optimizes modules during dev & build.
