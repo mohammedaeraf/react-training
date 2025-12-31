@@ -1,5 +1,4 @@
 import "./App.css";
-import Card2 from "./Card2";
 import Card from "./Components/Card";
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
@@ -13,10 +12,7 @@ function App() {
         <Card2></Card2>
       </div> */}
       <div className="font-sans">
-        <Navbar></Navbar>
-        <Hero></Hero>
-        <MainSection></MainSection>
-        <Footer></Footer>
+        <Card></Card>
       </div>
     </>
   );
