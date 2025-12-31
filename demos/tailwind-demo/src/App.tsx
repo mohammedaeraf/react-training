@@ -12,7 +12,10 @@ function App() {
         <Card2></Card2>
       </div> */}
       <div className="font-sans">
-        <Card></Card>
+        <Navbar></Navbar>
+        <Hero></Hero>
+        <MainSection></MainSection>
+        <Footer></Footer>
       </div>
     </>
   );
