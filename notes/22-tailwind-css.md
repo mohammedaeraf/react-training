@@ -6,10 +6,10 @@
 
 By the end of this tutorial, students will be able to:
 
-* Create a React project using **Vite**
-* Install **Tailwind CSS (latest version)**
-* Use **Tailwind utility classes**
-* Build a **simple card UI**
+- Create a React project using **Vite**
+- Install **Tailwind CSS (latest version)**
+- Use **Tailwind utility classes**
+- Build a **simple card UI**
 
 ---
 
@@ -18,8 +18,10 @@ By the end of this tutorial, students will be able to:
 ### 1️⃣ Open terminal and run:
 
 ```bash
-npm create vite@latest tailwind-react-demo --template react
+npm create vite@latest tailwind-react-demo
 ```
+
+Choose `React` & `TypeScript` from the options list
 
 ### 2️⃣ Go into the project folder:
 
@@ -58,16 +60,13 @@ npm install tailwindcss @tailwindcss/vite
 Open **`vite.config.js`** and update it:
 
 ```js
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
-})
+  plugins: [react(), tailwindcss()],
+});
 ```
 
 ---
@@ -93,11 +92,9 @@ Open **`src/App.jsx`** and replace code with:
 export default function App() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <h1 className="text-3xl font-bold text-blue-600">
-        Tailwind is Working!
-      </h1>
+      <h1 className="text-3xl font-bold text-blue-600">Tailwind is Working!</h1>
     </div>
-  )
+  );
 }
 ```
 
@@ -113,9 +110,7 @@ Now replace `App.jsx` with this **simple card UI**:
 export default function App() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-
       <div className="bg-white p-6 rounded-lg shadow-md w-80">
-
         <h2 className="text-xl font-bold text-gray-800 mb-2">
           Web Development
         </h2>
@@ -127,11 +122,9 @@ export default function App() {
         <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
           Enroll Now
         </button>
-
       </div>
-
     </div>
-  )
+  );
 }
 ```
 
