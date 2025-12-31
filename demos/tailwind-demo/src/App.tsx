@@ -1,6 +1,6 @@
 import "./App.css";
 import Card2 from "./Card2";
-import Card from "./Card";
+import Card from "./Components/Card";
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import MainSection from "./Components/MainSection";
